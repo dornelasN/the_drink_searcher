@@ -12,4 +12,10 @@ class Drink < ApplicationRecord
     cold
     extra_cold
   ]
+
+  def self.search(drink_params)
+    if(drink_params['name'])
+      Drink.select{|drink| drink.name == drink_params['name']}
+    end
+  end
 end

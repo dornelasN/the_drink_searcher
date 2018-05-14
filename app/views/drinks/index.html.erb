@@ -16,10 +16,10 @@
       </div>
     </div>
 
-    <%= form_tag do %>
+    <%= form_tag(drinks_path, method: :get) do %>
       <div class="simple-form">
         <div class="simple-form__input">
-          <input class="form-control form-control-lg" type="text" placeholder="Try a Martini..">
+          <%= text_field_tag :name, params[:name], placeholder:'Try a Martini..', class:'form-control form-control-lg' %>
         </div>
         <div class="simple-form__btn">
           <button type="submit" class="btn btn-outline-primary btn-lg">Search</button>
@@ -33,7 +33,7 @@
   </div>
 
   <div class="drinks-list">
-    <% @drinks.each do |drink| %>
+    <% @drinks_feed.each do |drink| %>
       <div class="card drink-card">
         <%= image_tag drink.image_url, class: 'drink-card__img' %>
         <div class="drink-card__body">
@@ -41,6 +41,9 @@
           <p><%= drink.description %></p>
         </div>
       </div>
+    <% end %>
+    <% if(@drinks_feed.size == 0) %>
+      <div>No results found, please update your search form</div>
     <% end %>
   </div>
 </div>
