@@ -1,7 +1,7 @@
 class DrinksController < ApplicationController
   def index
     @drinks = Drink.all.order(:name)
-    @drinks_feed = Drink.search(drink_params) || Drink.all.order(:name)
+    @drinks_feed = Drink.search(drink_params) || @drinks
   end
 
   def show

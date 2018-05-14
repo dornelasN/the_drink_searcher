@@ -25,9 +25,22 @@
           <button type="submit" class="btn btn-outline-primary btn-lg">Search</button>
         </div>
       </div>
+    <% end %>
 
+    <%= form_tag(drinks_path, method: :get) do %>
       <div class="advanced-form" style="display:none;">
-        User inputs to search a collection of drinks based on given recommendations.
+        <label class="form-check-label">Description: </label>
+        <label class="form-check-label">Minimum Raiting: </label>
+        <div class="simple-form__input">
+          <%= text_field_tag :rating_avg, params[:rating_avg], placeholder:'0 - 10', class:'form-control form-control-lg' %>
+        </div><br>
+        <label class="form-check-label">Temperature: </label>
+        <div class="simple-form__select">
+          <%= select_tag :temperature, options_for_select(Drink.temperatures.keys), prompt:'Select an ideal Temperature' %>
+        </div><br>
+        <div class="simple-form__btn">
+          <button type="submit" class="btn btn-outline-primary btn-lg">Search</button>
+        </div>
       </div>
     <% end %>
   </div>
@@ -39,6 +52,8 @@
         <div class="drink-card__body">
           <h2><%= drink.name %></h2>
           <p><%= drink.description %></p>
+          <p>Drink Rating: <%= drink.rating_avg %></p>
+          <p>Temperature: <%= drink.temperature %></p>
         </div>
       </div>
     <% end %>
