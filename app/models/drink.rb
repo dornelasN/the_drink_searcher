@@ -22,11 +22,13 @@ class Drink < ApplicationRecord
       # Recommend me (receive recommendation of drinks based on user inputs)
       drinks_list = recommend_drinks(drink_params, Drink.all)
     end
+    # Return drinks sorted by name!
     return drinks_list.sort_by{ |drink| drink.name }
   end
 
   def self.recommend_drinks(drink_params, drink_list)
     initial_size = drink_list.size
+    
     # Check if rating, temperature, alcohol level, and/or bitternes level are provided and filter the list
     if(drink_params[:rating_avg] != "")
       drink_list = select_by_rating(drink_params[:rating_avg], drink_list)
@@ -40,13 +42,7 @@ class Drink < ApplicationRecord
     if(drink_params[:temperature] != "")
       drink_list = select_by_temperature(drink_params[:temperature], drink_list)
     end
-    # if RATING, TEMPERATURE, and ALCOHOL level are not provided, finally, check only for Bitterness level
-    #elsif(drink_params[:ibu])
-    # Check if no filtering happened to the inital Drink_list (all drinks)
-    if( drink_list.size === initial_size )
-      # If no filtering happened, empty drink_list so no results are shown to an empty recommendation
-      drink_list = []
-    end
+
     return drink_list
   end
 
@@ -61,7 +57,7 @@ class Drink < ApplicationRecord
   def self.select_by_bitterness_level(bitterness_level, drink_list)
     return drink_list.select{|drink| drink.ibu <= bitterness_level.to_i }
   end
-  
+
   def self.select_by_temperature(temperature, drink_list)
     return drink_list.select{|drink| drink.temperature == temperature}
   end
