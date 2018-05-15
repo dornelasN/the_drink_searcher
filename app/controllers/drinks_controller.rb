@@ -3,11 +3,7 @@ class DrinksController < ApplicationController
     @drinks = Drink.all.order(:name)
     @drinks_feed = Drink.search(drink_params) || @drinks
   end
-
-  def show
-    @drink = Drink.find(params[:id])
-  end
-
+  
   def new
     @drink = Drink.new
   end

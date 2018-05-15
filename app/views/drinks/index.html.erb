@@ -29,10 +29,17 @@
 
     <%= form_tag(drinks_path, method: :get) do %>
       <div class="advanced-form" style="display:none;">
-        <label class="form-check-label">Description: </label>
         <label class="form-check-label">Minimum Raiting: </label>
         <div class="simple-form__input">
-          <%= text_field_tag :rating_avg, params[:rating_avg], placeholder:'0 - 10', class:'form-control form-control-lg' %>
+          <%= text_field_tag :rating_avg, params[:rating_avg], placeholder:'0.00 - 5.00', class:'form-control form-control-lg' %>
+        </div><br>
+        <label class="form-check-label">Maximum Alcohol Level: </label>
+        <div class="simple-form__input">
+          <%= text_field_tag :alcohol_level, params[:alcohol_level], placeholder:'0 - 100', class:'form-control form-control-lg' %>
+        </div><br>
+        <label class="form-check-label">Maximum Bitterness Level: </label>
+        <div class="simple-form__input">
+          <%= text_field_tag :ibu, params[:ibu], placeholder:'0 - 10', class:'form-control form-control-lg' %>
         </div><br>
         <label class="form-check-label">Temperature: </label>
         <div class="simple-form__select">
@@ -54,6 +61,8 @@
           <p><%= drink.description %></p>
           <p>Drink Rating: <%= drink.rating_avg %></p>
           <p>Temperature: <%= drink.temperature %></p>
+          <p>Alcohol level: <%= drink.alcohol_level %></p>
+          <p>Bitterness level: <%= drink.ibu %></p>
         </div>
       </div>
     <% end %>
