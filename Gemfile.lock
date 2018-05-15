@@ -233,6 +233,7 @@ DEPENDENCIES
   rails (~> 5.1.4)
   rails-assets-bootstrap!
   rails-assets-jquery!
+  rails-assets-tether (>= 1.1.0)!
   react-rails
   rspec-rails (~> 3.7)
   sass-rails (~> 5.0)

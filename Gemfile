@@ -33,6 +33,7 @@ gem 'jbuilder', '~> 2.5'
 # gem 'capistrano-rails', group: :development
 
 source 'https://rails-assets.org' do
+  gem 'rails-assets-tether', '>= 1.1.0'
   gem 'rails-assets-bootstrap'
   gem 'rails-assets-jquery'
 end
